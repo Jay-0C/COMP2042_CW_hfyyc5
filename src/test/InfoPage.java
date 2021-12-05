@@ -199,7 +199,7 @@ public class InfoPage extends JComponent implements MouseListener, MouseMotionLi
         x = startButton.x;
         y = startButton.y;
 
-        y *= 1.2;
+        y *= 0.8;
 
 
         menuButton.setLocation(x,y);
