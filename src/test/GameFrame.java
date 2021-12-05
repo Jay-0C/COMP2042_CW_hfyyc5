@@ -85,6 +85,17 @@ public class GameFrame extends JFrame implements WindowFocusListener {
 
     }
 
+    public void enableHomeMenu(){
+        this.dispose();
+        this.remove(infoPage);
+        this.add(homeMenu,BorderLayout.CENTER);
+        this.setUndecorated(false);
+        this.setDefaultCloseOperation(EXIT_ON_CLOSE);
+        this.setVisible(true);
+        /*to avoid problems with graphics focus controller is added here*/
+
+    }
+
     private void autoLocate(){
         Dimension size = Toolkit.getDefaultToolkit().getScreenSize();
         int x = (size.width - this.getWidth()) / 2;
