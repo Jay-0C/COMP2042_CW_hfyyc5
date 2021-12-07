@@ -20,6 +20,11 @@ package test;
 import java.awt.*;
 import java.awt.geom.Point2D;
 import java.util.Random;
+import java.io.File;
+import java.io.FileWriter;
+import java.io.FileNotFoundException;
+import java.util.Scanner;
+import java.io.IOException;
 
 
 public class Wall {
@@ -39,17 +44,21 @@ public class Wall {
 
     private Brick[][] levels;
     private int level;
+    public int currentscore = 0;
+    public int highscore;
 
     private Point startPoint;
     private int brickCount;
     private int ballCount;
     private boolean ballLost;
 
-    public Wall(Rectangle drawArea, int brickCount, int lineCount, double brickDimensionRatio, Point ballPos){
+
+
+    public Wall(Rectangle drawArea, int brickCount, int lineCount, double brickDimensionRatio, Point ballPos) {
 
         this.startPoint = new Point(ballPos);
 
-        levels = makeLevels(drawArea,brickCount,lineCount,brickDimensionRatio);
+        levels = makeLevels(drawArea, brickCount, lineCount, brickDimensionRatio);
         level = 0;
 
         ballCount = 3;
@@ -58,20 +67,32 @@ public class Wall {
         rnd = new Random();
 
         makeBall(ballPos);
-        int speedX,speedY;
-        do{
+        int speedX, speedY;
+        do {
             speedX = rnd.nextInt(5) - 2;
-        }while(speedX == 0);
-        do{
+        } while (speedX == 0);
+        do {
             speedY = -rnd.nextInt(3);
-        }while(speedY == 0);
+        } while (speedY == 0);
 
-        ball.setSpeed(speedX,speedY);
+        ball.setSpeed(speedX, speedY);
 
-        player = new Player((Point) ballPos.clone(),150,10, drawArea);
+        player = new Player((Point) ballPos.clone(), 150, 10, drawArea);
 
         area = drawArea;
 
+        try {
+            File hstxt = new File("HighScore.txt");
+            Scanner read = new Scanner(hstxt);
+            while (read.hasNextLine()) {
+                String data = read.nextLine();
+                highscore = Integer.parseInt(data);
+            }
+            read.close();
+        } catch (FileNotFoundException e) {
+            System.out.println("An error occurred.");
+            e.printStackTrace();
+        }
 
     }
 
@@ -187,6 +208,24 @@ public class Wall {
             * because for every brick program checks for horizontal and vertical impacts
             */
             brickCount--;
+            currentscore++;
+            try {
+                FileWriter whstxt = new FileWriter("HighScore.txt");
+                if(currentscore>highscore) {
+                    highscore = currentscore;
+                    whstxt.write(""+highscore);
+                    whstxt.close();
+                    System.out.println("Successfully wrote to the file.");
+                }
+                else{
+                    whstxt.write(""+highscore);
+                    whstxt.close();
+                    System.out.println("Successfully wrote to the file.");
+                }
+            } catch (IOException e) {
+                System.out.println("An error occurred.");
+                e.printStackTrace();
+            }
         }
         else if(impactBorder()) {
             ball.reverseX();
@@ -272,7 +311,7 @@ public class Wall {
 
     public void nextLevel(){
         bricks = levels[level++];
-        this.brickCount = bricks.length;
+        this.brickCount = 1;
     }
 
     public boolean hasLevel(){

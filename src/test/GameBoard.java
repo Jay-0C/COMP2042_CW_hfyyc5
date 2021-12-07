@@ -69,8 +69,8 @@ public class GameBoard extends JComponent implements KeyListener,MouseListener,M
 
 
         this.initialize();
-        message = "";
         wall = new Wall(new Rectangle(0,0,DEF_WIDTH,DEF_HEIGHT),30,3,6/2,new Point(300,430));
+        message = String.format("High Score : %d",wall.highscore);
 
         debugConsole = new DebugConsole(owner,wall,this);
         //initialize the first level
@@ -90,14 +90,14 @@ public class GameBoard extends JComponent implements KeyListener,MouseListener,M
             }
             else if(wall.isDone()){
                 if(wall.hasLevel()){
-                    message = "Go to Next Level";
+                    message = String.format("High Score : %d",wall.highscore);
                     gameTimer.stop();
                     wall.ballReset();
                     wall.wallReset();
                     wall.nextLevel();
                 }
                 else{
-                    message = "ALL WALLS DESTROYED";
+                    message = String.format("High Score : %d",wall.highscore);
                     gameTimer.stop();
                 }
             }
