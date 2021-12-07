@@ -37,6 +37,12 @@ public class Player {
     private int max;
 
 
+    /**
+     * @param ballPoint
+     * @param width
+     * @param height
+     * @param container
+     */
     public Player(Point ballPoint,int width,int height,Rectangle container) {
         this.ballPoint = ballPoint;
         moveAmount = 0;
@@ -46,15 +52,27 @@ public class Player {
 
     }
 
+    /**
+     * @param width
+     * @param height
+     * @return
+     */
     private Rectangle makeRectangle(int width,int height){
         Point p = new Point((int)(ballPoint.getX() - (width / 2)),(int)ballPoint.getY());
         return  new Rectangle(p,new Dimension(width,height));
     }
 
+    /**
+     * @param b
+     * @return
+     */
     public boolean impact(Ball b){
         return playerFace.contains(b.getPosition()) && playerFace.contains(b.down) ;
     }
 
+    /**
+     *
+     */
     public void move(){
         double x = ballPoint.getX() + moveAmount;
         if(x < min || x > max)
@@ -63,22 +81,37 @@ public class Player {
         playerFace.setLocation(ballPoint.x - (int)playerFace.getWidth()/2,ballPoint.y);
     }
 
+    /**
+     *
+     */
     public void moveLeft(){
         moveAmount = -DEF_MOVE_AMOUNT;
     }
 
+    /**
+     *
+     */
     public void movRight(){
         moveAmount = DEF_MOVE_AMOUNT;
     }
 
+    /**
+     *
+     */
     public void stop(){
         moveAmount = 0;
     }
 
+    /**
+     * @return
+     */
     public Shape getPlayerFace(){
         return  playerFace;
     }
 
+    /**
+     * @param p
+     */
     public void moveTo(Point p){
         ballPoint.setLocation(p);
         playerFace.setLocation(ballPoint.x - (int)playerFace.getWidth()/2,ballPoint.y);

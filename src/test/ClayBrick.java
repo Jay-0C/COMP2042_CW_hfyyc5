@@ -17,19 +17,27 @@ public class ClayBrick extends Brick {
     private static final int CLAY_STRENGTH = 1;
 
 
-
-
-
-
+    /**
+     * @param point
+     * @param size
+     */
     public ClayBrick(Point point, Dimension size){
         super(NAME,point,size,DEF_BORDER,DEF_INNER,CLAY_STRENGTH);
     }
 
+    /**
+     * @param pos
+     * @param size
+     * @return
+     */
     @Override
     protected Shape makeBrickFace(Point pos, Dimension size) {
         return new Rectangle(pos,size);
     }
 
+    /**
+     * @return
+     */
     @Override
     public Shape getBrick() {
         return super.brickFace;

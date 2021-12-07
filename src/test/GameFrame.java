@@ -35,6 +35,9 @@ public class GameFrame extends JFrame implements WindowFocusListener {
 
     private boolean gaming;
 
+    /**
+     *
+     */
     public GameFrame(){
         super();
 
@@ -55,6 +58,9 @@ public class GameFrame extends JFrame implements WindowFocusListener {
 
     }
 
+    /**
+     *
+     */
     public void initialize(){
         this.setTitle(DEF_TITLE);
         this.setDefaultCloseOperation(EXIT_ON_CLOSE);
@@ -63,6 +69,9 @@ public class GameFrame extends JFrame implements WindowFocusListener {
         this.setVisible(true);
     }
 
+    /**
+     *
+     */
     public void enableGameBoard(){
         this.dispose();
         this.remove(homeMenu);
@@ -76,6 +85,9 @@ public class GameFrame extends JFrame implements WindowFocusListener {
 
     }
 
+    /**
+     *
+     */
     public void enableInfoPage(){
         this.dispose();
         this.remove(homeMenu);
@@ -87,6 +99,9 @@ public class GameFrame extends JFrame implements WindowFocusListener {
 
     }
 
+    /**
+     *
+     */
     public void enableHomeMenu(){
         this.dispose();
         this.remove(infoPage);
@@ -98,6 +113,9 @@ public class GameFrame extends JFrame implements WindowFocusListener {
 
     }
 
+    /**
+     *
+     */
     private void autoLocate(){
         Dimension size = Toolkit.getDefaultToolkit().getScreenSize();
         int x = (size.width - this.getWidth()) / 2;
@@ -106,6 +124,9 @@ public class GameFrame extends JFrame implements WindowFocusListener {
     }
 
 
+    /**
+     * @param windowEvent
+     */
     @Override
     public void windowGainedFocus(WindowEvent windowEvent) {
         /*
@@ -119,6 +140,9 @@ public class GameFrame extends JFrame implements WindowFocusListener {
         gaming = true;
     }
 
+    /**
+     * @param windowEvent
+     */
     @Override
     public void windowLostFocus(WindowEvent windowEvent) {
         if(gaming)

@@ -44,6 +44,10 @@ abstract public class Brick  {
         private int steps;
 
 
+        /**
+         * @param crackDepth
+         * @param steps
+         */
         public Crack(int crackDepth, int steps){
 
             crack = new GeneralPath();
@@ -103,6 +107,10 @@ abstract public class Brick  {
             }
         }
 
+        /**
+         * @param start
+         * @param end
+         */
         protected void makeCrack(Point start, Point end){
 
             GeneralPath path = new GeneralPath();
@@ -134,11 +142,21 @@ abstract public class Brick  {
             crack.append(path,true);
         }
 
+        /**
+         * @param bound
+         * @return
+         */
         private int randomInBounds(int bound){
             int n = (bound * 2) + 1;
             return rnd.nextInt(n) - bound;
         }
 
+        /**
+         * @param i
+         * @param steps
+         * @param divisions
+         * @return
+         */
         private boolean inMiddle(int i,int steps,int divisions){
             int low = (steps / divisions);
             int up = low * (divisions - 1);
@@ -146,6 +164,11 @@ abstract public class Brick  {
             return  (i > low) && (i < up);
         }
 
+        /**
+         * @param bound
+         * @param probability
+         * @return
+         */
         private int jumps(int bound,double probability){
 
             if(rnd.nextDouble() > probability)
@@ -154,6 +177,12 @@ abstract public class Brick  {
 
         }
 
+        /**
+         * @param from
+         * @param to
+         * @param direction
+         * @return
+         */
         private Point makeRandomPoint(Point from,Point to, int direction){
 
             Point out = new Point();
@@ -188,6 +217,14 @@ abstract public class Brick  {
     private boolean broken;
 
 
+    /**
+     * @param name
+     * @param pos
+     * @param size
+     * @param border
+     * @param inner
+     * @param strength
+     */
     public Brick(String name, Point pos,Dimension size,Color border,Color inner,int strength){
         rnd = new Random();
         broken = false;
@@ -199,8 +236,18 @@ abstract public class Brick  {
 
     }
 
+    /**
+     * @param pos
+     * @param size
+     * @return
+     */
     protected abstract Shape makeBrickFace(Point pos,Dimension size);
 
+    /**
+     * @param point
+     * @param dir
+     * @return
+     */
     public  boolean setImpact(Point2D point , int dir){
         if(broken)
             return false;
@@ -208,19 +255,31 @@ abstract public class Brick  {
         return  broken;
     }
 
+    /**
+     * @return
+     */
     public abstract Shape getBrick();
 
 
-
+    /**
+     * @return
+     */
     public Color getBorderColor(){
         return  border;
     }
 
+    /**
+     * @return
+     */
     public Color getInnerColor(){
         return inner;
     }
 
 
+    /**
+     * @param b
+     * @return
+     */
     public final int findImpact(Ball b){
         if(broken)
             return 0;
@@ -236,15 +295,24 @@ abstract public class Brick  {
         return out;
     }
 
+    /**
+     * @return
+     */
     public final boolean isBroken(){
         return broken;
     }
 
+    /**
+     *
+     */
     public void repair() {
         broken = false;
         strength = fullStrength;
     }
 
+    /**
+     *
+     */
     public void impact(){
         strength--;
         broken = (strength == 0);

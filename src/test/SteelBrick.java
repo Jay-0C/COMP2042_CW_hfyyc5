@@ -33,6 +33,10 @@ public class SteelBrick extends Brick {
     private Random rnd;
     private Shape brickFace;
 
+    /**
+     * @param point
+     * @param size
+     */
     public SteelBrick(Point point, Dimension size){
         super(NAME,point,size,DEF_BORDER,DEF_INNER,STEEL_STRENGTH);
         rnd = new Random();
@@ -40,16 +44,29 @@ public class SteelBrick extends Brick {
     }
 
 
+    /**
+     * @param pos
+     * @param size
+     * @return
+     */
     @Override
     protected Shape makeBrickFace(Point pos, Dimension size) {
         return new Rectangle(pos,size);
     }
 
+    /**
+     * @return
+     */
     @Override
     public Shape getBrick() {
         return brickFace;
     }
 
+    /**
+     * @param point
+     * @param dir
+     * @return
+     */
     public  boolean setImpact(Point2D point , int dir){
         if(super.isBroken())
             return false;
@@ -57,6 +74,9 @@ public class SteelBrick extends Brick {
         return  super.isBroken();
     }
 
+    /**
+     *
+     */
     public void impact(){
         if(rnd.nextDouble() < STEEL_PROBABILITY){
             super.impact();

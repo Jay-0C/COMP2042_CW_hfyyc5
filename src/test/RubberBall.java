@@ -29,11 +29,20 @@ public class RubberBall extends Ball {
     private static final Color DEF_BORDER_COLOR = DEF_INNER_COLOR.darker().darker();
 
 
+    /**
+     * @param center
+     */
     public RubberBall(Point2D center){
         super(center,DEF_RADIUS,DEF_RADIUS,DEF_INNER_COLOR,DEF_BORDER_COLOR);
     }
 
 
+    /**
+     * @param center
+     * @param radiusA
+     * @param radiusB
+     * @return
+     */
     @Override
     protected Shape makeBall(Point2D center, int radiusA, int radiusB) {
 

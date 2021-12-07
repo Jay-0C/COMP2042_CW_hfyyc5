@@ -44,6 +44,10 @@ public class InfoPage extends JComponent implements MouseListener, MouseMotionLi
     private boolean startClicked;
 
 
+    /**
+     * @param owner
+     * @param area
+     */
     public InfoPage(GameFrame owner,Dimension area){
 
         this.addMouseListener(this);
@@ -71,11 +75,17 @@ public class InfoPage extends JComponent implements MouseListener, MouseMotionLi
     }
 
 
+    /**
+     * @param g
+     */
     public void paint(Graphics g){
         drawMenu((Graphics2D)g);
     }
 
 
+    /**
+     * @param g2d
+     */
     public void drawMenu(Graphics2D g2d){
 
         drawContainer(g2d);
@@ -103,6 +113,9 @@ public class InfoPage extends JComponent implements MouseListener, MouseMotionLi
         g2d.setColor(prevColor);
     }
 
+    /**
+     * @param g2d
+     */
     private void drawContainer(Graphics2D g2d){
         Color prev = g2d.getColor();
 
@@ -127,6 +140,9 @@ public class InfoPage extends JComponent implements MouseListener, MouseMotionLi
         g2d.setColor(prev);
     }
 
+    /**
+     * @param g2d
+     */
     private void drawText(Graphics2D g2d){
 
         g2d.setColor(TEXT_COLOR);
@@ -160,6 +176,9 @@ public class InfoPage extends JComponent implements MouseListener, MouseMotionLi
 
     }
 
+    /**
+     * @param g2d
+     */
     private void drawButton(Graphics2D g2d){
 
         FontRenderContext frc = g2d.getFontRenderContext();
@@ -227,6 +246,9 @@ public class InfoPage extends JComponent implements MouseListener, MouseMotionLi
 
     }
 
+    /**
+     * @param mouseEvent
+     */
     @Override
     public void mouseClicked(MouseEvent mouseEvent) {
         Point p = mouseEvent.getPoint();
@@ -239,6 +261,9 @@ public class InfoPage extends JComponent implements MouseListener, MouseMotionLi
         }
     }
 
+    /**
+     * @param mouseEvent
+     */
     @Override
     public void mousePressed(MouseEvent mouseEvent) {
         Point p = mouseEvent.getPoint();
@@ -253,6 +278,9 @@ public class InfoPage extends JComponent implements MouseListener, MouseMotionLi
         }
     }
 
+    /**
+     * @param mouseEvent
+     */
     @Override
     public void mouseReleased(MouseEvent mouseEvent) {
         if(startClicked ){
@@ -265,22 +293,34 @@ public class InfoPage extends JComponent implements MouseListener, MouseMotionLi
         }
     }
 
+    /**
+     * @param mouseEvent
+     */
     @Override
     public void mouseEntered(MouseEvent mouseEvent) {
 
     }
 
+    /**
+     * @param mouseEvent
+     */
     @Override
     public void mouseExited(MouseEvent mouseEvent) {
 
     }
 
 
+    /**
+     * @param mouseEvent
+     */
     @Override
     public void mouseDragged(MouseEvent mouseEvent) {
 
     }
 
+    /**
+     * @param mouseEvent
+     */
     @Override
     public void mouseMoved(MouseEvent mouseEvent) {
         Point p = mouseEvent.getPoint();

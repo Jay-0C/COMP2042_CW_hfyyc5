@@ -57,6 +57,9 @@ public class GameBoard extends JComponent implements KeyListener,MouseListener,M
     private DebugConsole debugConsole;
 
 
+    /**
+     * @param owner
+     */
     public GameBoard(JFrame owner){
         super();
 
@@ -108,7 +111,9 @@ public class GameBoard extends JComponent implements KeyListener,MouseListener,M
     }
 
 
-
+    /**
+     *
+     */
     private void initialize(){
         this.setPreferredSize(new Dimension(DEF_WIDTH,DEF_HEIGHT));
         this.setFocusable(true);
@@ -119,6 +124,9 @@ public class GameBoard extends JComponent implements KeyListener,MouseListener,M
     }
 
 
+    /**
+     * @param g
+     */
     public void paint(Graphics g){
 
         Graphics2D g2d = (Graphics2D) g;
@@ -142,6 +150,9 @@ public class GameBoard extends JComponent implements KeyListener,MouseListener,M
         Toolkit.getDefaultToolkit().sync();
     }
 
+    /**
+     * @param g2d
+     */
     private void clear(Graphics2D g2d){
         Color tmp = g2d.getColor();
         g2d.setColor(BG_COLOR);
@@ -149,6 +160,10 @@ public class GameBoard extends JComponent implements KeyListener,MouseListener,M
         g2d.setColor(tmp);
     }
 
+    /**
+     * @param brick
+     * @param g2d
+     */
     private void drawBrick(Brick brick,Graphics2D g2d){
         Color tmp = g2d.getColor();
 
@@ -162,6 +177,10 @@ public class GameBoard extends JComponent implements KeyListener,MouseListener,M
         g2d.setColor(tmp);
     }
 
+    /**
+     * @param ball
+     * @param g2d
+     */
     private void drawBall(Ball ball,Graphics2D g2d){
         Color tmp = g2d.getColor();
 
@@ -176,6 +195,10 @@ public class GameBoard extends JComponent implements KeyListener,MouseListener,M
         g2d.setColor(tmp);
     }
 
+    /**
+     * @param p
+     * @param g2d
+     */
     private void drawPlayer(Player p,Graphics2D g2d){
         Color tmp = g2d.getColor();
 
@@ -189,11 +212,17 @@ public class GameBoard extends JComponent implements KeyListener,MouseListener,M
         g2d.setColor(tmp);
     }
 
+    /**
+     * @param g2d
+     */
     private void drawMenu(Graphics2D g2d){
         obscureGameBoard(g2d);
         drawPauseMenu(g2d);
     }
 
+    /**
+     * @param g2d
+     */
     private void obscureGameBoard(Graphics2D g2d){
 
         Composite tmp = g2d.getComposite();
@@ -209,6 +238,9 @@ public class GameBoard extends JComponent implements KeyListener,MouseListener,M
         g2d.setColor(tmpColor);
     }
 
+    /**
+     * @param g2d
+     */
     private void drawPauseMenu(Graphics2D g2d){
         Font tmpFont = g2d.getFont();
         Color tmpColor = g2d.getColor();
@@ -263,10 +295,16 @@ public class GameBoard extends JComponent implements KeyListener,MouseListener,M
         g2d.setColor(tmpColor);
     }
 
+    /**
+     * @param keyEvent
+     */
     @Override
     public void keyTyped(KeyEvent keyEvent) {
     }
 
+    /**
+     * @param keyEvent
+     */
     @Override
     public void keyPressed(KeyEvent keyEvent) {
         switch(keyEvent.getKeyCode()){
@@ -296,11 +334,17 @@ public class GameBoard extends JComponent implements KeyListener,MouseListener,M
         }
     }
 
+    /**
+     * @param keyEvent
+     */
     @Override
     public void keyReleased(KeyEvent keyEvent) {
         wall.player.stop();
     }
 
+    /**
+     * @param mouseEvent
+     */
     @Override
     public void mouseClicked(MouseEvent mouseEvent) {
         Point p = mouseEvent.getPoint();
@@ -323,31 +367,49 @@ public class GameBoard extends JComponent implements KeyListener,MouseListener,M
 
     }
 
+    /**
+     * @param mouseEvent
+     */
     @Override
     public void mousePressed(MouseEvent mouseEvent) {
 
     }
 
+    /**
+     * @param mouseEvent
+     */
     @Override
     public void mouseReleased(MouseEvent mouseEvent) {
 
     }
 
+    /**
+     * @param mouseEvent
+     */
     @Override
     public void mouseEntered(MouseEvent mouseEvent) {
 
     }
 
+    /**
+     * @param mouseEvent
+     */
     @Override
     public void mouseExited(MouseEvent mouseEvent) {
 
     }
 
+    /**
+     * @param mouseEvent
+     */
     @Override
     public void mouseDragged(MouseEvent mouseEvent) {
 
     }
 
+    /**
+     * @param mouseEvent
+     */
     @Override
     public void mouseMoved(MouseEvent mouseEvent) {
         Point p = mouseEvent.getPoint();
@@ -362,6 +424,9 @@ public class GameBoard extends JComponent implements KeyListener,MouseListener,M
         }
     }
 
+    /**
+     *
+     */
     public void onLostFocus(){
         gameTimer.stop();
         message = "Focus Lost";
