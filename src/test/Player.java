@@ -30,23 +30,23 @@ public class Player {
 
     private static final int DEF_MOVE_AMOUNT = 5;
 
-    private Rectangle playerFace;
-    private Point ballPoint;
+    private Rectangle playerBoard;
+    private Point boardPosition;
     private int moveAmount;
     private int min;
     private int max;
 
 
     /**
-     * @param ballPoint
+     * @param boardPosition
      * @param width
      * @param height
      * @param container
      */
-    public Player(Point ballPoint,int width,int height,Rectangle container) {
-        this.ballPoint = ballPoint;
+    public Player(Point boardPosition,int width,int height,Rectangle container) {
+        this.boardPosition = boardPosition;
         moveAmount = 0;
-        playerFace = makeRectangle(width, height);
+        playerBoard = makeRectangle(width, height);
         min = container.x + (width / 2);
         max = min + container.width - width;
 
@@ -58,7 +58,7 @@ public class Player {
      * @return
      */
     private Rectangle makeRectangle(int width,int height){
-        Point p = new Point((int)(ballPoint.getX() - (width / 2)),(int)ballPoint.getY());
+        Point p = new Point((int)(boardPosition.getX() - (width / 2)),(int)boardPosition.getY());
         return  new Rectangle(p,new Dimension(width,height));
     }
 
@@ -67,18 +67,18 @@ public class Player {
      * @return
      */
     public boolean impact(Ball b){
-        return playerFace.contains(b.getPosition()) && playerFace.contains(b.down) ;
+        return playerBoard.contains(b.getPosition()) && playerBoard.contains(b.down) ;
     }
 
     /**
      *
      */
-    public void move(){
-        double x = ballPoint.getX() + moveAmount;
+    public void movement(){
+        double x = boardPosition.getX() + moveAmount;
         if(x < min || x > max)
             return;
-        ballPoint.setLocation(x,ballPoint.getY());
-        playerFace.setLocation(ballPoint.x - (int)playerFace.getWidth()/2,ballPoint.y);
+        boardPosition.setLocation(x,boardPosition.getY());
+        playerBoard.setLocation(boardPosition.x - (int)playerBoard.getWidth()/2,boardPosition.y);
     }
 
     /**
@@ -105,15 +105,15 @@ public class Player {
     /**
      * @return
      */
-    public Shape getPlayerFace(){
-        return  playerFace;
+    public Shape getPlayerBoard(){
+        return  playerBoard;
     }
 
     /**
      * @param p
      */
     public void moveTo(Point p){
-        ballPoint.setLocation(p);
-        playerFace.setLocation(ballPoint.x - (int)playerFace.getWidth()/2,ballPoint.y);
+        boardPosition.setLocation(p);
+        playerBoard.setLocation(boardPosition.x - (int)playerBoard.getWidth()/2,boardPosition.y);
     }
 }

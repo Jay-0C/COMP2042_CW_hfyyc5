@@ -30,24 +30,24 @@ public class RubberBall extends Ball {
 
 
     /**
-     * @param center
+     * @param position
      */
-    public RubberBall(Point2D center){
-        super(center,DEF_RADIUS,DEF_RADIUS,DEF_INNER_COLOR,DEF_BORDER_COLOR);
+    public RubberBall(Point2D position){
+        super(position,DEF_RADIUS,DEF_RADIUS,DEF_INNER_COLOR,DEF_BORDER_COLOR);
     }
 
 
     /**
-     * @param center
+     * @param position
      * @param radiusA
      * @param radiusB
      * @return
      */
     @Override
-    protected Shape makeBall(Point2D center, int radiusA, int radiusB) {
+    protected Shape makeBall(Point2D position, int radiusA, int radiusB) {
 
-        double x = center.getX() - (radiusA / 2);
-        double y = center.getY() - (radiusB / 2);
+        double x = position.getX() - (radiusA / 2);
+        double y = position.getY() - (radiusB / 2);
 
         return new Ellipse2D.Double(x,y,radiusA,radiusB);
     }

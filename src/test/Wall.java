@@ -234,9 +234,9 @@ public class Wall {
     /**
      *
      */
-    public void move(){
-        player.move();
-        ball.move();
+    public void movement(){
+        player.movement();
+        ball.movement();
     }
 
     /**
@@ -398,14 +398,14 @@ public class Wall {
      * @param s
      */
     public void setBallXSpeed(int s){
-        ball.setXSpeed(s);
+        ball.speedX = s;
     }
 
     /**
      * @param s
      */
     public void setBallYSpeed(int s){
-        ball.setYSpeed(s);
+        ball.speedY = s;
     }
 
     /**

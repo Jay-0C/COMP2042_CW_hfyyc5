@@ -80,7 +80,7 @@ public class GameBoard extends JComponent implements KeyListener,MouseListener,M
         wall.nextLevel();
 
         gameTimer = new Timer(10,e ->{
-            wall.move();
+            wall.movement();
             wall.findImpacts();
             message = String.format("Bricks: %d Balls %d",wall.getBrickCount(),wall.getBallCount());
             if(wall.isBallLost()){
@@ -184,7 +184,7 @@ public class GameBoard extends JComponent implements KeyListener,MouseListener,M
     private void drawBall(Ball ball,Graphics2D g2d){
         Color tmp = g2d.getColor();
 
-        Shape s = ball.getBallFace();
+        Shape s = ball.getBallSize();
 
         g2d.setColor(ball.getInnerColor());
         g2d.fill(s);
@@ -202,7 +202,7 @@ public class GameBoard extends JComponent implements KeyListener,MouseListener,M
     private void drawPlayer(Player p,Graphics2D g2d){
         Color tmp = g2d.getColor();
 
-        Shape s = p.getPlayerFace();
+        Shape s = p.getPlayerBoard();
         g2d.setColor(Player.INNER_COLOR);
         g2d.fill(s);
 
