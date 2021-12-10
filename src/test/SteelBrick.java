@@ -31,7 +31,7 @@ public class SteelBrick extends Brick {
     private static final double STEEL_PROBABILITY = 0.4;
 
     private Random rnd;
-    private Shape brickFace;
+    private Shape brickSize;
 
     /**
      * @param point
@@ -40,7 +40,7 @@ public class SteelBrick extends Brick {
     public SteelBrick(Point point, Dimension size){
         super(NAME,point,size,DEF_BORDER,DEF_INNER,STEEL_STRENGTH);
         rnd = new Random();
-        brickFace = super.brickFace;
+        brickSize = super.brickSize;
     }
 
 
@@ -50,7 +50,7 @@ public class SteelBrick extends Brick {
      * @return
      */
     @Override
-    protected Shape makeBrickFace(Point pos, Dimension size) {
+    protected Shape makeBrickSize(Point pos, Dimension size) {
         return new Rectangle(pos,size);
     }
 
@@ -59,7 +59,7 @@ public class SteelBrick extends Brick {
      */
     @Override
     public Shape getBrick() {
-        return brickFace;
+        return brickSize;
     }
 
     /**

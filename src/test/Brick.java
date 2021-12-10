@@ -12,7 +12,6 @@ import java.util.Random;
  */
 abstract public class Brick  {
 
-    public static final int MIN_CRACK = 1;
     public static final int DEF_CRACK_DEPTH = 1;
     public static final int DEF_STEPS = 35;
 
@@ -63,12 +62,19 @@ abstract public class Brick  {
             return crack;
         }
 
+        /**
+         *
+         */
         public void reset(){
             crack.reset();
         }
 
+        /**
+         * @param point
+         * @param direction
+         */
         protected void makeCrack(Point2D point, int direction){
-            Rectangle bounds = Brick.this.brickFace.getBounds();
+            Rectangle bounds = Brick.this.brickSize.getBounds();
 
             Point impact = new Point((int)point.getX(),(int)point.getY());
             Point start = new Point();
@@ -122,7 +128,7 @@ abstract public class Brick  {
             double h = (end.y - start.y) / (double)steps;
 
             int bound = crackDepth;
-            int jump  = bound * 5;
+            int breakRate  = bound * 5;
 
             double x,y;
 
@@ -132,7 +138,7 @@ abstract public class Brick  {
                 y = (i * h) + start.y + randomInBounds(bound);
 
                 if(inMiddle(i,CRACK_SECTIONS,steps))
-                    y += jumps(jump,JUMP_PROBABILITY);
+                    y += breakCheck(breakRate,JUMP_PROBABILITY);
 
                 path.lineTo(x,y);
 
@@ -169,7 +175,7 @@ abstract public class Brick  {
          * @param probability
          * @return
          */
-        private int jumps(int bound,double probability){
+        private int breakCheck(int bound,double probability){
 
             if(rnd.nextDouble() > probability)
                 return randomInBounds(bound);
@@ -206,7 +212,7 @@ abstract public class Brick  {
     private static Random rnd;
 
     private String name;
-    Shape brickFace;
+    Shape brickSize;
 
     private Color border;
     private Color inner;
@@ -229,7 +235,7 @@ abstract public class Brick  {
         rnd = new Random();
         broken = false;
         this.name = name;
-        brickFace = makeBrickFace(pos,size);
+        brickSize = makeBrickSize(pos,size);
         this.border = border;
         this.inner = inner;
         this.fullStrength = this.strength = strength;
@@ -241,14 +247,14 @@ abstract public class Brick  {
      * @param size
      * @return
      */
-    protected abstract Shape makeBrickFace(Point pos,Dimension size);
+    protected abstract Shape makeBrickSize(Point pos,Dimension size);
 
     /**
      * @param point
      * @param dir
      * @return
      */
-    public  boolean setImpact(Point2D point , int dir){
+    public  boolean realiseImpact(Point2D point , int dir){
         if(broken)
             return false;
         impact();
@@ -284,13 +290,13 @@ abstract public class Brick  {
         if(broken)
             return 0;
         int out  = 0;
-        if(brickFace.contains(b.right))
+        if(brickSize.contains(b.right))
             out = LEFT_IMPACT;
-        else if(brickFace.contains(b.left))
+        else if(brickSize.contains(b.left))
             out = RIGHT_IMPACT;
-        else if(brickFace.contains(b.up))
+        else if(brickSize.contains(b.up))
             out = DOWN_IMPACT;
-        else if(brickFace.contains(b.down))
+        else if(brickSize.contains(b.down))
             out = UP_IMPACT;
         return out;
     }

@@ -31,7 +31,7 @@ public class ClayBrick extends Brick {
      * @return
      */
     @Override
-    protected Shape makeBrickFace(Point pos, Dimension size) {
+    protected Shape makeBrickSize(Point pos, Dimension size) {
         return new Rectangle(pos,size);
     }
 
@@ -40,7 +40,7 @@ public class ClayBrick extends Brick {
      */
     @Override
     public Shape getBrick() {
-        return super.brickFace;
+        return super.brickSize;
     }
 
 
