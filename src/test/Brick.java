@@ -46,6 +46,7 @@ abstract public class Brick  {
         /**
          * @param crackDepth
          * @param steps
+         * Makes a crack in the brick
          */
         public Crack(int crackDepth, int steps){
 
@@ -55,15 +56,17 @@ abstract public class Brick  {
 
         }
 
-
-
+        /**
+         * @return
+         * Returns the shape of the drawn crack
+         */
         public GeneralPath draw(){
 
             return crack;
         }
 
         /**
-         *
+         * Resets the cracks
          */
         public void reset(){
             crack.reset();
@@ -72,6 +75,7 @@ abstract public class Brick  {
         /**
          * @param point
          * @param direction
+         * Determines the start and end of the crack drawn on the brick
          */
         protected void makeCrack(Point2D point, int direction){
             Rectangle bounds = Brick.this.brickSize.getBounds();
@@ -116,6 +120,7 @@ abstract public class Brick  {
         /**
          * @param start
          * @param end
+         * Draws the crack on the brick
          */
         protected void makeCrack(Point start, Point end){
 
@@ -151,6 +156,7 @@ abstract public class Brick  {
         /**
          * @param bound
          * @return
+         * Returns a random point within brick boundaries
          */
         private int randomInBounds(int bound){
             int n = (bound * 2) + 1;
@@ -162,6 +168,7 @@ abstract public class Brick  {
          * @param steps
          * @param divisions
          * @return
+         * Returns true if i is in the middle brick
          */
         private boolean inMiddle(int i,int steps,int divisions){
             int low = (steps / divisions);
@@ -174,6 +181,7 @@ abstract public class Brick  {
          * @param bound
          * @param probability
          * @return
+         * Checks if the brick is broken
          */
         private int breakCheck(int bound,double probability){
 
@@ -187,6 +195,7 @@ abstract public class Brick  {
          * @param from
          * @param to
          * @param direction
+         * Returns a random position within the brick for the crack to be made
          * @return
          */
         private Point makeRandomPoint(Point from,Point to, int direction){
@@ -230,6 +239,7 @@ abstract public class Brick  {
      * @param border
      * @param inner
      * @param strength
+     * Creates an initial brick
      */
     public Brick(String name, Point pos,Dimension size,Color border,Color inner,int strength){
         rnd = new Random();
@@ -246,6 +256,7 @@ abstract public class Brick  {
      * @param pos
      * @param size
      * @return
+     * Determines the brick size
      */
     protected abstract Shape makeBrickSize(Point pos,Dimension size);
 
@@ -253,6 +264,7 @@ abstract public class Brick  {
      * @param point
      * @param dir
      * @return
+     * Checks if the brick is broken
      */
     public  boolean realiseImpact(Point2D point , int dir){
         if(broken)
@@ -263,12 +275,14 @@ abstract public class Brick  {
 
     /**
      * @return
+     * Used to get the brick by the other classes
      */
     public abstract Shape getBrick();
 
 
     /**
      * @return
+     * Gets tne border color for the brick
      */
     public Color getBorderColor(){
         return  border;
@@ -276,6 +290,7 @@ abstract public class Brick  {
 
     /**
      * @return
+     * Gets the inner color for the brick
      */
     public Color getInnerColor(){
         return inner;
@@ -285,6 +300,7 @@ abstract public class Brick  {
     /**
      * @param b
      * @return
+     * Returns how the ball will collide with the brick
      */
     public final int findImpact(Ball b){
         if(broken)
@@ -303,13 +319,14 @@ abstract public class Brick  {
 
     /**
      * @return
+     * Returns 0 if brick is broken
      */
     public final boolean isBroken(){
         return broken;
     }
 
     /**
-     *
+     * Repairs the brick
      */
     public void repair() {
         broken = false;
@@ -317,7 +334,7 @@ abstract public class Brick  {
     }
 
     /**
-     *
+     *Reduces the brick strength until it's broken
      */
     public void impact(){
         strength--;

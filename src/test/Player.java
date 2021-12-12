@@ -42,6 +42,7 @@ public class Player {
      * @param width
      * @param height
      * @param container
+     * Creates the player paddle
      */
     public Player(Point boardPosition,int width,int height,Rectangle container) {
         this.boardPosition = boardPosition;
@@ -56,6 +57,7 @@ public class Player {
      * @param width
      * @param height
      * @return
+     * Draws the player paddle
      */
     private Rectangle makeRectangle(int width,int height){
         Point p = new Point((int)(boardPosition.getX() - (width / 2)),(int)boardPosition.getY());
@@ -65,13 +67,15 @@ public class Player {
     /**
      * @param b
      * @return
+     * Returns true if the ball hits the player paddle
      */
     public boolean impact(Ball b){
         return playerBoard.contains(b.getPosition()) && playerBoard.contains(b.down) ;
     }
 
     /**
-     *
+     * Moves player into the direction of moveAmount
+     * Stops players from moving past the border
      */
     public void movement(){
         double x = boardPosition.getX() + moveAmount;
@@ -104,6 +108,7 @@ public class Player {
 
     /**
      * @return
+     * Returns shape of player paddle
      */
     public Shape getPlayerBoard(){
         return  playerBoard;
@@ -111,6 +116,7 @@ public class Player {
 
     /**
      * @param p
+     * Moves the player paddle to a specified position
      */
     public void moveTo(Point p){
         boardPosition.setLocation(p);

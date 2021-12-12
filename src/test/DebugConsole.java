@@ -37,6 +37,7 @@ public class DebugConsole extends JDialog implements WindowListener{
      * @param owner
      * @param wall
      * @param gameBoard
+     * Creates debug console
      */
     public DebugConsole(JFrame owner,Wall wall,GameBoard gameBoard){
 
@@ -53,7 +54,7 @@ public class DebugConsole extends JDialog implements WindowListener{
     }
 
     /**
-     *
+     * initializes debugConsole with specified settings
      */
     private void initialize(){
         this.setModal(true);
@@ -66,7 +67,7 @@ public class DebugConsole extends JDialog implements WindowListener{
 
 
     /**
-     *
+     * Sets the location of the debug console
      */
     private void setLocation(){
         int x = ((owner.getWidth() - this.getWidth()) / 2) + owner.getX();
@@ -117,6 +118,7 @@ public class DebugConsole extends JDialog implements WindowListener{
 
     /**
      * @param windowEvent
+     * Places the debug console in the middle of the screen, and shows the number of balls and the current ball's speed
      */
     @Override
     public void windowActivated(WindowEvent windowEvent) {

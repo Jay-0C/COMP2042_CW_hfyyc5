@@ -31,6 +31,7 @@ public class RubberBall extends Ball {
 
     /**
      * @param position
+     * Creates rubber ball with Ball's ball class
      */
     public RubberBall(Point2D position){
         super(position,DEF_RADIUS,DEF_RADIUS,DEF_INNER_COLOR,DEF_BORDER_COLOR);
@@ -42,6 +43,7 @@ public class RubberBall extends Ball {
      * @param radiusA
      * @param radiusB
      * @return
+     * Draws the ball with specified radii
      */
     @Override
     protected Shape makeBall(Point2D position, int radiusA, int radiusB) {

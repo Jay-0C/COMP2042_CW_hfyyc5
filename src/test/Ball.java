@@ -31,6 +31,7 @@ abstract public class Ball {
      * @param ballWidth
      * @param innerColor
      * @param borderColor
+     * Declares up, down, left, right and ball colors
      */
     public Ball(Point2D position,int ballLength,int ballWidth,Color innerColor,Color borderColor){
         this.position = position;
@@ -50,11 +51,12 @@ abstract public class Ball {
      * @param ballLength
      * @param ballWidth
      * @return
+     * Creates an abstract class for use in RubberBall
      */
     protected abstract Shape makeBall(Point2D position,int ballLength,int ballWidth);
 
     /**
-     *
+     * Ball movement
      */
     public void movement(){
         RectangularShape tmp = (RectangularShape) ballSize;
@@ -72,6 +74,7 @@ abstract public class Ball {
     /**
      * @param x
      * @param y
+     * Sets ball speed
      */
     public void setSpeed(int x,int y){
         speedX = x;
@@ -80,14 +83,14 @@ abstract public class Ball {
 
 
     /**
-     *
+     * Reverses horizontal vector of the ball
      */
     public void reverseX(){
         speedX *= -1;
     }
 
     /**
-     *
+     * Reverses vertical vector of the ball
      */
     public void reverseY(){
         speedY *= -1;
@@ -95,6 +98,7 @@ abstract public class Ball {
 
     /**
      * @return
+     * Gets border color for ball
      */
     public Color getBorderColor(){
         return borderColor;
@@ -102,6 +106,7 @@ abstract public class Ball {
 
     /**
      * @return
+     * Gets inner color for ball
      */
     public Color getInnerColor(){
         return innerColor;
@@ -109,6 +114,7 @@ abstract public class Ball {
 
     /**
      * @return
+     * Gets initial position for ball
      */
     public Point2D getPosition(){
         return position;
@@ -116,6 +122,7 @@ abstract public class Ball {
 
     /**
      * @return
+     * Gets size of ball
      */
     public Shape getBallSize(){
         return ballSize;
@@ -123,6 +130,7 @@ abstract public class Ball {
 
     /**
      * @param p
+     * Moves ball back to starting position
      */
     public void moveTo(Point p){
         position.setLocation(p);
@@ -138,6 +146,7 @@ abstract public class Ball {
     /**
      * @param width
      * @param height
+     * Checks where the ball moves next
      */
     private void setPoints(double width,double height){
         up.setLocation(position.getX(),position.getY()-(height / 2));
@@ -149,6 +158,7 @@ abstract public class Ball {
 
     /**
      * @return
+     * Gets the ball's horizontal speed
      */
     public int getSpeedX(){
         return speedX;
@@ -156,6 +166,7 @@ abstract public class Ball {
 
     /**
      * @return
+     * Gats the ball's vertical speed
      */
     public int getSpeedY(){
         return speedY;

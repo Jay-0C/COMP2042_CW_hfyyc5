@@ -36,6 +36,7 @@ public class SteelBrick extends Brick {
     /**
      * @param point
      * @param size
+     * Creates the initial steel brick
      */
     public SteelBrick(Point point, Dimension size){
         super(NAME,point,size,DEF_BORDER,DEF_INNER,STEEL_STRENGTH);
@@ -48,6 +49,7 @@ public class SteelBrick extends Brick {
      * @param pos
      * @param size
      * @return
+     * Determines the size of the steel brick
      */
     @Override
     protected Shape makeBrickSize(Point pos, Dimension size) {
@@ -56,6 +58,7 @@ public class SteelBrick extends Brick {
 
     /**
      * @return
+     * Gets the size of the steel brick
      */
     @Override
     public Shape getBrick() {
@@ -66,6 +69,7 @@ public class SteelBrick extends Brick {
      * @param point
      * @param dir
      * @return
+     * Checks if the steel brick is broken, runs it if impact is false, and returns the broken status to isBroken
      */
     public  boolean setImpact(Point2D point , int dir){
         if(super.isBroken())
@@ -75,7 +79,7 @@ public class SteelBrick extends Brick {
     }
 
     /**
-     *
+     * Determines if the impact registers using the random variable
      */
     public void impact(){
         if(rnd.nextDouble() < STEEL_PROBABILITY){

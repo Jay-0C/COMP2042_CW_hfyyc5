@@ -68,6 +68,8 @@ public class HomeMenu extends JComponent implements MouseListener, MouseMotionLi
     /**
      * @param owner
      * @param area
+     * Creates the menu board
+     * Creates the buttons
      */
     public HomeMenu(GameFrame owner,Dimension area){
 
@@ -100,6 +102,7 @@ public class HomeMenu extends JComponent implements MouseListener, MouseMotionLi
 
     /**
      * @param g
+     * Paints the menu over the menu board
      */
     public void paint(Graphics g){
         drawMenu((Graphics2D)g);
@@ -108,6 +111,7 @@ public class HomeMenu extends JComponent implements MouseListener, MouseMotionLi
 
     /**
      * @param g2d
+     * draws the menu text and the buttons
      */
     public void drawMenu(Graphics2D g2d){
 
@@ -138,6 +142,7 @@ public class HomeMenu extends JComponent implements MouseListener, MouseMotionLi
 
     /**
      * @param g2d
+     * Paints colors in the menu and the background
      */
     private void colorMenu(Graphics2D g2d){
         Color prev = g2d.getColor();
@@ -165,6 +170,7 @@ public class HomeMenu extends JComponent implements MouseListener, MouseMotionLi
 
     /**
      * @param g2d
+     * Draws all of the text in the menu board
      */
     private void writeText(Graphics2D g2d){
 
@@ -201,6 +207,7 @@ public class HomeMenu extends JComponent implements MouseListener, MouseMotionLi
 
     /**
      * @param g2d
+     * Draws the buttons on the menu board
      */
     private void drawButton(Graphics2D g2d){
 
@@ -296,6 +303,9 @@ public class HomeMenu extends JComponent implements MouseListener, MouseMotionLi
 
     /**
      * @param mouseEvent
+     * Starts the game if the Start button is clicked
+     * Exits the game if the exit button is clicked
+     * Opens the Info page is clicked
      */
     @Override
     public void mouseClicked(MouseEvent mouseEvent) {
@@ -315,6 +325,7 @@ public class HomeMenu extends JComponent implements MouseListener, MouseMotionLi
 
     /**
      * @param mouseEvent
+     * Changes the color of the buttons when pressed
      */
     @Override
     public void mousePressed(MouseEvent mouseEvent) {
@@ -336,6 +347,7 @@ public class HomeMenu extends JComponent implements MouseListener, MouseMotionLi
 
     /**
      * @param mouseEvent
+     * Changes the button color back to normal when mouse is released
      */
     @Override
     public void mouseReleased(MouseEvent mouseEvent) {
@@ -380,6 +392,7 @@ public class HomeMenu extends JComponent implements MouseListener, MouseMotionLi
 
     /**
      * @param mouseEvent
+     * Changes the cursor into a hand when hovering over a button
      */
     @Override
     public void mouseMoved(MouseEvent mouseEvent) {

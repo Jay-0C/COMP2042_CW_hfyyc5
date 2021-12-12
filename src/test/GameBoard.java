@@ -59,6 +59,8 @@ public class GameBoard extends JComponent implements KeyListener,MouseListener,M
 
     /**
      * @param owner
+     * Generates all JFrame panels
+     * Paints a message when gametimer is running and at the end of the level
      */
     public GameBoard(JFrame owner){
         super();
@@ -110,7 +112,7 @@ public class GameBoard extends JComponent implements KeyListener,MouseListener,M
 
 
     /**
-     *
+     * initializes a frame and adds focus, mouse and key listeners
      */
     private void initialize(){
         this.setPreferredSize(new Dimension(DEF_WIDTH,DEF_HEIGHT));
@@ -124,6 +126,7 @@ public class GameBoard extends JComponent implements KeyListener,MouseListener,M
 
     /**
      * @param g
+     * Clears the board and paints the game on the game board
      */
     public void paint(Graphics g){
 
@@ -150,6 +153,7 @@ public class GameBoard extends JComponent implements KeyListener,MouseListener,M
 
     /**
      * @param g2d
+     * Clears the screen
      */
     private void clear(Graphics2D g2d){
         Color tmp = g2d.getColor();
@@ -161,6 +165,7 @@ public class GameBoard extends JComponent implements KeyListener,MouseListener,M
     /**
      * @param brick
      * @param g2d
+     * Colors the brick onto the game board
      */
     private void drawBrick(Brick brick,Graphics2D g2d){
         Color tmp = g2d.getColor();
@@ -177,6 +182,7 @@ public class GameBoard extends JComponent implements KeyListener,MouseListener,M
     /**
      * @param ball
      * @param g2d
+     * Colors the ball onto the game board
      */
     private void drawBall(Ball ball,Graphics2D g2d){
         Color tmp = g2d.getColor();
@@ -195,6 +201,7 @@ public class GameBoard extends JComponent implements KeyListener,MouseListener,M
     /**
      * @param p
      * @param g2d
+     * Colors the player paddle onto the game board
      */
     private void drawPlayer(Player p,Graphics2D g2d){
         Color tmp = g2d.getColor();
@@ -211,6 +218,7 @@ public class GameBoard extends JComponent implements KeyListener,MouseListener,M
 
     /**
      * @param g2d
+     * Draws the pause menu, while obscuring the screen
      */
     private void drawMenu(Graphics2D g2d){
         obscureGameBoard(g2d);
@@ -219,6 +227,7 @@ public class GameBoard extends JComponent implements KeyListener,MouseListener,M
 
     /**
      * @param g2d
+     * Obscures the screen
      */
     private void obscureGameBoard(Graphics2D g2d){
 
@@ -237,6 +246,7 @@ public class GameBoard extends JComponent implements KeyListener,MouseListener,M
 
     /**
      * @param g2d
+     * Draws the pause menu
      */
     private void drawPauseMenu(Graphics2D g2d){
         Font tmpFont = g2d.getFont();
@@ -299,6 +309,7 @@ public class GameBoard extends JComponent implements KeyListener,MouseListener,M
 
     /**
      * @param keyEvent
+     * Listens for keys, and calls the corresponding methods
      */
     @Override
     public void keyPressed(KeyEvent keyEvent) {
@@ -331,6 +342,7 @@ public class GameBoard extends JComponent implements KeyListener,MouseListener,M
 
     /**
      * @param keyEvent
+     * Stops the player paddle from moving when no keys are pressed
      */
     @Override
     public void keyReleased(KeyEvent keyEvent) {
@@ -339,6 +351,10 @@ public class GameBoard extends JComponent implements KeyListener,MouseListener,M
 
     /**
      * @param mouseEvent
+     * Listens for the mouse when the pause menu is activated
+     * Removes the pause menu if continue is pressed
+     * Resets bricks and balls if restart is pressed
+     * Exits the game if exit is pressed
      */
     @Override
     public void mouseClicked(MouseEvent mouseEvent) {
@@ -404,6 +420,7 @@ public class GameBoard extends JComponent implements KeyListener,MouseListener,M
 
     /**
      * @param mouseEvent
+     * Changes the cursor to a hand when hovering over pause menu buttons
      */
     @Override
     public void mouseMoved(MouseEvent mouseEvent) {
@@ -420,7 +437,7 @@ public class GameBoard extends JComponent implements KeyListener,MouseListener,M
     }
 
     /**
-     *
+     * Stops the game timer and displays "Focus Lost" when window is not focused
      */
     public void onLostFocus(){
         gameTimer.stop();

@@ -39,6 +39,7 @@ public class DebugPanel extends JPanel {
 
     /**
      * @param wall
+     * Creates the debug panel
      */
     public DebugPanel(Wall wall){
 
@@ -61,7 +62,7 @@ public class DebugPanel extends JPanel {
     }
 
     /**
-     *
+     * Initializes the layout and background of DebugPanel
      */
     private void initialize(){
         this.setBackground(DEF_BKG);
@@ -72,6 +73,7 @@ public class DebugPanel extends JPanel {
      * @param title
      * @param e
      * @return
+     * Creates button for the debug panel
      */
     private JButton makeButton(String title, ActionListener e){
         JButton out = new JButton(title);
@@ -84,6 +86,7 @@ public class DebugPanel extends JPanel {
      * @param max
      * @param e
      * @return
+     * Creates slider for the debug panel
      */
     private JSlider makeSlider(int min, int max, ChangeListener e){
         JSlider out = new JSlider(min,max);
@@ -97,6 +100,7 @@ public class DebugPanel extends JPanel {
     /**
      * @param x
      * @param y
+     * Used the set the ball's speed
      */
     public void setValues(int x,int y){
         ballXSpeed.setValue(x);

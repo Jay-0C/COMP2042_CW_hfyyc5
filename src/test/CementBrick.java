@@ -20,6 +20,7 @@ public class CementBrick extends Brick {
     /**
      * @param point
      * @param size
+     * Creates the initial cement brick
      */
     public CementBrick(Point point, Dimension size){
         super(NAME,point,size,DEF_BORDER,DEF_INNER,CEMENT_STRENGTH);
@@ -31,6 +32,7 @@ public class CementBrick extends Brick {
      * @param pos
      * @param size
      * @return
+     * Determines the size of the cement brick
      */
     @Override
     protected Shape makeBrickSize(Point pos, Dimension size) {
@@ -41,6 +43,7 @@ public class CementBrick extends Brick {
      * @param point
      * @param dir
      * @return
+     * Checks if the cement brick is broken
      */
     @Override
     public boolean realiseImpact(Point2D point, int dir) {
@@ -58,6 +61,7 @@ public class CementBrick extends Brick {
 
     /**
      * @return
+     * Gets cement brick shape
      */
     @Override
     public Shape getBrick() {
@@ -65,7 +69,7 @@ public class CementBrick extends Brick {
     }
 
     /**
-     *
+     * update brick with brick shape
      */
     private void updateBrick(){
         if(!super.isBroken()){
@@ -76,7 +80,7 @@ public class CementBrick extends Brick {
     }
 
     /**
-     *
+     * Repairs the cement brick
      */
     public void repair(){
         super.repair();

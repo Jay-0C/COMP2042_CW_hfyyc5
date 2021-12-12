@@ -51,6 +51,7 @@ public class InfoPage extends JComponent implements MouseListener, MouseMotionLi
     /**
      * @param owner
      * @param area
+     * Creates the info page and it's buttons
      */
     public InfoPage(GameFrame owner,Dimension area){
 
@@ -79,16 +80,18 @@ public class InfoPage extends JComponent implements MouseListener, MouseMotionLi
 
     /**
      * @param g
+     * Paints the info page over the info page board
      */
     public void paint(Graphics g){
-        drawMenu((Graphics2D)g);
+        drawInfoPage((Graphics2D)g);
     }
 
 
     /**
      * @param g2d
+     * Draws the info page's text and buttons
      */
-    public void drawMenu(Graphics2D g2d){
+    public void drawInfoPage(Graphics2D g2d){
 
         colorMenu(g2d);
 
@@ -117,6 +120,7 @@ public class InfoPage extends JComponent implements MouseListener, MouseMotionLi
 
     /**
      * @param g2d
+     * Paints colors onto thee page and background
      */
     private void colorMenu(Graphics2D g2d){
         Color prev = g2d.getColor();
@@ -144,6 +148,7 @@ public class InfoPage extends JComponent implements MouseListener, MouseMotionLi
 
     /**
      * @param g2d
+     * Draws the text
      */
     private void drawText(Graphics2D g2d){
 
@@ -208,6 +213,7 @@ public class InfoPage extends JComponent implements MouseListener, MouseMotionLi
 
     /**
      * @param g2d
+     * Draws the buttons
      */
     private void drawButton(Graphics2D g2d){
 
@@ -275,6 +281,8 @@ public class InfoPage extends JComponent implements MouseListener, MouseMotionLi
 
     /**
      * @param mouseEvent
+     * Starts the game if the Start button was pressed
+     * Returns the the home menu if the Menu button was pressed
      */
     @Override
     public void mouseClicked(MouseEvent mouseEvent) {
@@ -290,6 +298,7 @@ public class InfoPage extends JComponent implements MouseListener, MouseMotionLi
 
     /**
      * @param mouseEvent
+     * Changes the color of the mouse when pressed
      */
     @Override
     public void mousePressed(MouseEvent mouseEvent) {
@@ -307,6 +316,7 @@ public class InfoPage extends JComponent implements MouseListener, MouseMotionLi
 
     /**
      * @param mouseEvent
+     * Returns the color of the buttons back to normal when mouse is released
      */
     @Override
     public void mouseReleased(MouseEvent mouseEvent) {
@@ -347,6 +357,7 @@ public class InfoPage extends JComponent implements MouseListener, MouseMotionLi
 
     /**
      * @param mouseEvent
+     * Changes the cursor to a hand when hovering over the buttons
      */
     @Override
     public void mouseMoved(MouseEvent mouseEvent) {

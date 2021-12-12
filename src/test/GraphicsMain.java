@@ -24,6 +24,7 @@ public class GraphicsMain {
 
     /**
      * @param args
+     * Launches the application
      */
     public static void main(String[] args){
         EventQueue.invokeLater(() -> new GameFrame().initialize());

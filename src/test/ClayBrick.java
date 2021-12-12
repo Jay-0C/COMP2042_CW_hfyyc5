@@ -20,6 +20,7 @@ public class ClayBrick extends Brick {
     /**
      * @param point
      * @param size
+     * Creates the initial clay brick
      */
     public ClayBrick(Point point, Dimension size){
         super(NAME,point,size,DEF_BORDER,DEF_INNER,CLAY_STRENGTH);
@@ -29,6 +30,7 @@ public class ClayBrick extends Brick {
      * @param pos
      * @param size
      * @return
+     * Determines the size of the clay brick
      */
     @Override
     protected Shape makeBrickSize(Point pos, Dimension size) {
@@ -37,6 +39,7 @@ public class ClayBrick extends Brick {
 
     /**
      * @return
+     * Gets clay brick shape
      */
     @Override
     public Shape getBrick() {
