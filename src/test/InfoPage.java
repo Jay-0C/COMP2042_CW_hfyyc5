@@ -10,22 +10,26 @@ import java.awt.geom.Rectangle2D;
 
 public class InfoPage extends JComponent implements MouseListener, MouseMotionListener {
 
-    private static final String GREETINGS = "Welcome to:";
-    private static final String GAME_TITLE = "Brick Destroy";
-    private static final String CREDITS = "Version 0.1";
+    private static final String PAGE_TITLE = "Info Page";
+    private static final String RULES = "Rules:";
+    private static final String FIRST_RULE = "1. Press the SPACE Bar to start or pause the game.";
+    private static final String SECOND_RULE = "2. Use the A and D keys to move the player paddle.";
+    private static final String THIRD_RULE = "3. Escape opens the game menu.";
+    private static final String FOURTH_RULE = "4. Use ALT + Shift + F1 to open the debug console.";
+    private static final String FIFTH_RULE = "5. Break all bricks to win.";
     private static final String MENU_TEXT = "Menu";
     private static final String START_TEXT = "Start";
 
     private static final Color BG_COLOR = new Color(0,0,0,0);
     private static final Color BORDER_COLOR = new Color(200,8,21); //Venetian Red
     private static final Color DASH_BORDER_COLOR = new  Color(255, 216, 0);//school bus yellow
-    private static final Color TEXT_COLOR = new Color(16, 52, 166);//egyptian blue
+    private static final Color TEXT_COLOR = new Color(20, 170, 100);//green
     private static final Color CLICKED_BUTTON_COLOR = BG_COLOR.brighter();
     private static final Color CLICKED_TEXT = Color.WHITE;
     private static final int BORDER_SIZE = 5;
     private static final float[] DASHES = {12,6};
 
-    private Rectangle menuFace;
+    private Rectangle infoLayout;
     private Rectangle menuButton;
     private Rectangle startButton;
 
@@ -33,9 +37,9 @@ public class InfoPage extends JComponent implements MouseListener, MouseMotionLi
     private BasicStroke borderStoke;
     private BasicStroke borderStoke_noDashes;
 
-    private Font greetingsFont;
-    private Font gameTitleFont;
-    private Font creditsFont;
+    private Font titleFont;
+    private Font ruleFont;
+    private Font numberRulesFont;
     private Font buttonFont;
 
     private GameFrame owner;
@@ -55,22 +59,20 @@ public class InfoPage extends JComponent implements MouseListener, MouseMotionLi
 
         this.owner = owner;
 
-        menuFace = new Rectangle(new Point(0,0),area);
+        infoLayout = new Rectangle(new Point(0,0),area);
         this.setPreferredSize(area);
 
-        Dimension btnDim = new Dimension(area.width / 3, area.height / 12);
+        Dimension btnDim = new Dimension(150, 25);
         menuButton = new Rectangle(btnDim);
         startButton = new Rectangle(btnDim);
 
         borderStoke = new BasicStroke(BORDER_SIZE,BasicStroke.CAP_ROUND,BasicStroke.JOIN_ROUND,0,DASHES,0);
         borderStoke_noDashes = new BasicStroke(BORDER_SIZE,BasicStroke.CAP_ROUND,BasicStroke.JOIN_ROUND);
 
-        greetingsFont = new Font("Noto Mono",Font.PLAIN,25);
-        gameTitleFont = new Font("Noto Mono",Font.BOLD,40);
-        creditsFont = new Font("Monospaced",Font.PLAIN,10);
-        buttonFont = new Font("Monospaced",Font.PLAIN,startButton.height-2);
-
-
+        titleFont = new Font("Noto Mono",Font.BOLD,50);
+        ruleFont = new Font("Noto Mono",Font.BOLD,35);
+        numberRulesFont = new Font("Noto Mono",Font.PLAIN,24);
+        buttonFont = new Font("Noto Mono",Font.PLAIN,startButton.height-2);
 
     }
 
@@ -88,7 +90,7 @@ public class InfoPage extends JComponent implements MouseListener, MouseMotionLi
      */
     public void drawMenu(Graphics2D g2d){
 
-        drawContainer(g2d);
+        colorMenu(g2d);
 
         /*
         all the following method calls need a relative
@@ -98,8 +100,8 @@ public class InfoPage extends JComponent implements MouseListener, MouseMotionLi
         Color prevColor = g2d.getColor();
         Font prevFont = g2d.getFont();
 
-        double x = menuFace.getX();
-        double y = menuFace.getY();
+        double x = infoLayout.getX();
+        double y = infoLayout.getY();
 
         g2d.translate(x,y);
 
@@ -116,24 +118,24 @@ public class InfoPage extends JComponent implements MouseListener, MouseMotionLi
     /**
      * @param g2d
      */
-    private void drawContainer(Graphics2D g2d){
+    private void colorMenu(Graphics2D g2d){
         Color prev = g2d.getColor();
 
         Image backgroundimage = Toolkit.getDefaultToolkit().getImage("Brick.jpg");
         g2d.drawImage(backgroundimage, 0, 0, this);
 
         g2d.setColor(BG_COLOR);
-        g2d.fill(menuFace);
+        g2d.fill(infoLayout);
 
         Stroke tmp = g2d.getStroke();
 
         g2d.setStroke(borderStoke_noDashes);
         g2d.setColor(DASH_BORDER_COLOR);
-        g2d.draw(menuFace);
+        g2d.draw(infoLayout);
 
         g2d.setStroke(borderStoke);
         g2d.setColor(BORDER_COLOR);
-        g2d.draw(menuFace);
+        g2d.draw(infoLayout);
 
         g2d.setStroke(tmp);
 
@@ -149,29 +151,57 @@ public class InfoPage extends JComponent implements MouseListener, MouseMotionLi
 
         FontRenderContext frc = g2d.getFontRenderContext();
 
-        Rectangle2D greetingsRect = greetingsFont.getStringBounds(GREETINGS,frc);
-        Rectangle2D gameTitleRect = gameTitleFont.getStringBounds(GAME_TITLE,frc);
-        Rectangle2D creditsRect = creditsFont.getStringBounds(CREDITS,frc);
+        Rectangle2D pageTitleRect = titleFont.getStringBounds(PAGE_TITLE,frc);
+        Rectangle2D rulesRect = ruleFont.getStringBounds(RULES,frc);
+        Rectangle2D firstRuleRect = numberRulesFont.getStringBounds(FIRST_RULE,frc);
+        Rectangle2D secondRuleRect = numberRulesFont.getStringBounds(SECOND_RULE,frc);
+        Rectangle2D thirdRuleRect = numberRulesFont.getStringBounds(THIRD_RULE,frc);
+        Rectangle2D fourthRuleRect = numberRulesFont.getStringBounds(FOURTH_RULE,frc);
+        Rectangle2D fifthRuleRect = numberRulesFont.getStringBounds(FIFTH_RULE,frc);
 
         int sX,sY;
 
-        sX = (int)(menuFace.getWidth() - greetingsRect.getWidth()) / 2;
-        sY = (int)(menuFace.getHeight() / 4);
+        sX = (int)(infoLayout.getWidth() - pageTitleRect.getWidth()) / 2;
+        sY = (int)(infoLayout.getHeight() / 7);
 
-        g2d.setFont(greetingsFont);
-        g2d.drawString(GREETINGS,sX,sY);
+        g2d.setFont(titleFont);
+        g2d.drawString(PAGE_TITLE,sX,sY);
 
-        sX = (int)(menuFace.getWidth() - gameTitleRect.getWidth()) / 2;
-        sY += (int) gameTitleRect.getHeight() * 1.1;//add 10% of String height between the two strings
+        sX = (int)(infoLayout.getWidth() - rulesRect.getWidth()) / 2;
+        sY += (int) rulesRect.getHeight() * 2;//add 100% of String height between the two strings
 
-        g2d.setFont(gameTitleFont);
-        g2d.drawString(GAME_TITLE,sX,sY);
+        g2d.setFont(ruleFont);
+        g2d.drawString(RULES,sX,sY);
 
-        sX = (int)(menuFace.getWidth() - creditsRect.getWidth()) / 2;
-        sY += (int) creditsRect.getHeight() * 1.1;
+        sX = (int)(infoLayout.getWidth() - firstRuleRect.getWidth()) / 2;
+        sY += (int) firstRuleRect.getHeight() * 2;
 
-        g2d.setFont(creditsFont);
-        g2d.drawString(CREDITS,sX,sY);
+        g2d.setFont(numberRulesFont);
+        g2d.drawString(FIRST_RULE,sX,sY);
+
+        sX = (int)(infoLayout.getWidth() - secondRuleRect.getWidth()) / 2;
+        sY += (int) secondRuleRect.getHeight() * 1.1;
+
+        g2d.setFont(numberRulesFont);
+        g2d.drawString(SECOND_RULE,sX,sY);
+
+        sX = (int)(infoLayout.getWidth() - thirdRuleRect.getWidth()) / 2;
+        sY += (int) thirdRuleRect.getHeight() * 1.1;
+
+        g2d.setFont(numberRulesFont);
+        g2d.drawString(THIRD_RULE,sX,sY);
+
+        sX = (int)(infoLayout.getWidth() - fourthRuleRect.getWidth()) / 2;
+        sY += (int) fourthRuleRect.getHeight() * 1.1;
+
+        g2d.setFont(numberRulesFont);
+        g2d.drawString(FOURTH_RULE,sX,sY);
+
+        sX = (int)(infoLayout.getWidth() - fifthRuleRect.getWidth()) / 2;
+        sY += (int) fifthRuleRect.getHeight() * 1.1;
+
+        g2d.setFont(numberRulesFont);
+        g2d.drawString(FIFTH_RULE,sX,sY);
 
 
     }
@@ -188,8 +218,8 @@ public class InfoPage extends JComponent implements MouseListener, MouseMotionLi
 
         g2d.setFont(buttonFont);
 
-        int x = (menuFace.width - startButton.width) / 2;
-        int y =(int) ((menuFace.height - startButton.height) * 0.8);
+        int x = 400;
+        int y =(int) ((infoLayout.height - startButton.height) * 0.9);
 
         startButton.setLocation(x,y);
 
@@ -198,8 +228,6 @@ public class InfoPage extends JComponent implements MouseListener, MouseMotionLi
 
         x += startButton.x;
         y += startButton.y + (startButton.height * 0.9);
-
-
 
 
         if(startClicked){
@@ -215,10 +243,9 @@ public class InfoPage extends JComponent implements MouseListener, MouseMotionLi
             g2d.drawString(START_TEXT,x,y);
         }
 
-        x = startButton.x;
+        x = 50;
         y = startButton.y;
 
-        y *= 0.8;
 
 
         menuButton.setLocation(x,y);
