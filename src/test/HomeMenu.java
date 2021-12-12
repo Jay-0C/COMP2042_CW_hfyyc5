@@ -44,7 +44,7 @@ public class HomeMenu extends JComponent implements MouseListener, MouseMotionLi
     private static final int BORDER_SIZE = 5;
     private static final float[] DASHES = {12,6};
 
-    private Rectangle menuFace;
+    private Rectangle introMenu;
     private Rectangle infoButton;
     private Rectangle startButton;
     private Rectangle exitButton;
@@ -79,9 +79,7 @@ public class HomeMenu extends JComponent implements MouseListener, MouseMotionLi
 
         this.owner = owner;
 
-
-
-        menuFace = new Rectangle(new Point(0,0),area);
+        introMenu = new Rectangle(new Point(0,0),area);
         this.setPreferredSize(area);
 
         Dimension btnDim = new Dimension(area.width / 3, area.height / 12);
@@ -96,8 +94,6 @@ public class HomeMenu extends JComponent implements MouseListener, MouseMotionLi
         gameTitleFont = new Font("Noto Mono",Font.BOLD,40);
         creditsFont = new Font("Monospaced",Font.PLAIN,10);
         buttonFont = new Font("Monospaced",Font.PLAIN,startButton.height-2);
-
-
 
     }
 
@@ -115,7 +111,7 @@ public class HomeMenu extends JComponent implements MouseListener, MouseMotionLi
      */
     public void drawMenu(Graphics2D g2d){
 
-        drawContainer(g2d);
+        colorMenu(g2d);
 
         /*
         all the following method calls need a relative
@@ -125,13 +121,13 @@ public class HomeMenu extends JComponent implements MouseListener, MouseMotionLi
         Color prevColor = g2d.getColor();
         Font prevFont = g2d.getFont();
 
-        double x = menuFace.getX();
-        double y = menuFace.getY();
+        double x = introMenu.getX();
+        double y = introMenu.getY();
 
         g2d.translate(x,y);
 
         //methods calls
-        drawText(g2d);
+        writeText(g2d);
         drawButton(g2d);
         //end of methods calls
 
@@ -143,24 +139,24 @@ public class HomeMenu extends JComponent implements MouseListener, MouseMotionLi
     /**
      * @param g2d
      */
-    private void drawContainer(Graphics2D g2d){
+    private void colorMenu(Graphics2D g2d){
         Color prev = g2d.getColor();
 
         Image backgroundimage = Toolkit.getDefaultToolkit().getImage("Brick.jpg");
         g2d.drawImage(backgroundimage, 0, 0, this);
 
         g2d.setColor(BG_COLOR);
-        g2d.fill(menuFace);
+        g2d.fill(introMenu);
 
         Stroke tmp = g2d.getStroke();
 
         g2d.setStroke(borderStoke_noDashes);
         g2d.setColor(DASH_BORDER_COLOR);
-        g2d.draw(menuFace);
+        g2d.draw(introMenu);
 
         g2d.setStroke(borderStoke);
         g2d.setColor(BORDER_COLOR);
-        g2d.draw(menuFace);
+        g2d.draw(introMenu);
 
         g2d.setStroke(tmp);
 
@@ -170,7 +166,7 @@ public class HomeMenu extends JComponent implements MouseListener, MouseMotionLi
     /**
      * @param g2d
      */
-    private void drawText(Graphics2D g2d){
+    private void writeText(Graphics2D g2d){
 
         g2d.setColor(TEXT_COLOR);
 
@@ -182,19 +178,19 @@ public class HomeMenu extends JComponent implements MouseListener, MouseMotionLi
 
         int sX,sY;
 
-        sX = (int)(menuFace.getWidth() - greetingsRect.getWidth()) / 2;
-        sY = (int)(menuFace.getHeight() / 4);
+        sX = (int)(introMenu.getWidth() - greetingsRect.getWidth()) / 2;
+        sY = (int)(introMenu.getHeight() / 4);
 
         g2d.setFont(greetingsFont);
         g2d.drawString(GREETINGS,sX,sY);
 
-        sX = (int)(menuFace.getWidth() - gameTitleRect.getWidth()) / 2;
+        sX = (int)(introMenu.getWidth() - gameTitleRect.getWidth()) / 2;
         sY += (int) gameTitleRect.getHeight() * 1.1;//add 10% of String height between the two strings
 
         g2d.setFont(gameTitleFont);
         g2d.drawString(GAME_TITLE,sX,sY);
 
-        sX = (int)(menuFace.getWidth() - creditsRect.getWidth()) / 2;
+        sX = (int)(introMenu.getWidth() - creditsRect.getWidth()) / 2;
         sY += (int) creditsRect.getHeight() * 1.1;
 
         g2d.setFont(creditsFont);
@@ -216,8 +212,8 @@ public class HomeMenu extends JComponent implements MouseListener, MouseMotionLi
 
         g2d.setFont(buttonFont);
 
-        int x = (menuFace.width - startButton.width) / 2;
-        int y =(int) ((menuFace.height - startButton.height) * 0.8);
+        int x = (introMenu.width - startButton.width) / 2;
+        int y =(int) ((introMenu.height - startButton.height) * 0.8);
 
         startButton.setLocation(x,y);
 
@@ -226,9 +222,6 @@ public class HomeMenu extends JComponent implements MouseListener, MouseMotionLi
 
         x += startButton.x;
         y += startButton.y + (startButton.height * 0.9);
-
-
-
 
         if(startClicked){
             Color tmp = g2d.getColor();
@@ -249,8 +242,6 @@ public class HomeMenu extends JComponent implements MouseListener, MouseMotionLi
         y *= 1.2;
 
         exitButton.setLocation(x,y);
-
-
 
 
         x = (int)(exitButton.getWidth() - eTxtRect.getWidth()) / 2;
@@ -279,8 +270,6 @@ public class HomeMenu extends JComponent implements MouseListener, MouseMotionLi
         y *= 0.8;
 
         infoButton.setLocation(x,y);
-
-
 
 
         x = (int)(infoButton.getWidth() - iTxtRect.getWidth()) / 2;

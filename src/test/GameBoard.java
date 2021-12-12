@@ -66,8 +66,6 @@ public class GameBoard extends JComponent implements KeyListener,MouseListener,M
         strLen = 0;
         showPauseMenu = false;
 
-
-
         menuFont = new Font("Monospaced",Font.PLAIN,TEXT_SIZE);
 
 
@@ -172,7 +170,6 @@ public class GameBoard extends JComponent implements KeyListener,MouseListener,M
 
         g2d.setColor(brick.getBorderColor());
         g2d.draw(brick.getBrick());
-
 
         g2d.setColor(tmp);
     }
@@ -288,8 +285,6 @@ public class GameBoard extends JComponent implements KeyListener,MouseListener,M
         }
 
         g2d.drawString(EXIT,x,y);
-
-
 
         g2d.setFont(tmpFont);
         g2d.setColor(tmpColor);
